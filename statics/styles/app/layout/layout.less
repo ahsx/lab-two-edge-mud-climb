@@ -1,0 +1,56 @@
+html, body
+{
+	background: @col_background;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: @ff_OpenSans;
+	font-size: 10px;
+}
+
+body
+{
+	min-height: 100%;
+}
+
+description
+{
+	display: none;
+}
+
+#main
+{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+
+	.pusher
+	{
+		height: 100%;
+		width: 100%;
+		.transition(.3s);
+		background: @col_white;
+		z-index: 99;
+		position: relative;
+	}
+
+	&.open
+	{
+		&.about
+		{
+			.pusher
+			{
+				.transform(translateX(500px));
+			}
+		}
+
+		&.options
+		{
+			.pusher
+			{
+				.transform(translateX(300px));
+			}
+		}
+	}
+
+}

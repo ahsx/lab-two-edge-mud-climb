@@ -1,0 +1,16 @@
+{
+  "name": "Lab Template",
+  "version": "0.1",
+  "main": "index.html",
+  "ignore": [
+    "**/.*",
+    "libs"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "angular-animate": "~1.2.25",
+    "easeljs": "*",
+    "jQuery": "~2.1.1",
+    "greensock": "~1.14.1"
+  }
+}

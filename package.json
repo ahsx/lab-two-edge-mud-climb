@@ -1,0 +1,25 @@
+{
+  "name": "generator-lab-template",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Template for the lab",
+  "keywords": ["yeoman-generator"],
+  "scripts": {},
+  "devDependencies": {
+    "gulp": "~3.5.2",
+    "gulp-jshint": "~1.5.0",
+    "gulp-less": "~1.2.1",
+    "gulp-util": "~2.2.14",
+    "stream-combiner": "0.0.4",
+    "gulp-uglify": "^0.2.1",
+    "gulp-concat": "^2.2.0",
+    "glob": "^3.2.9",
+    "mkdirp": "^0.3.5",
+    "gulp-livereload": "^1.5.0",
+    "gulp-notify": "^1.2.5",
+    "gulp-plumber": "^0.6.1"
+  },
+  "dependencies": {
+    "yeoman-generator": "^0.17.7"
+  }
+}

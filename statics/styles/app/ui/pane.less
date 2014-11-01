@@ -1,0 +1,72 @@
+.alternate
+{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	z-index: 1;
+	background: @col_optionsbar_background;
+}
+
+.pane
+{
+	position: absolute;
+	overflow: scroll;
+	height: 100%;
+	z-index: 0;
+
+	visibility: hidden;
+	.transition(.3s);
+	.transform-origin(100% 50%);
+	.transform-style(preserve-3d);
+	.transform(translate3d(-100%, 0, 0) rotateY(-90deg));
+
+	.content
+	{
+		padding: 30px;
+	}
+
+	&#options
+	{
+		max-width: 400px;
+		min-width: 200px;	
+	}
+
+	&#about
+	{
+		width: 500px;
+		max-width: 500px;
+		left: 0px;
+		top: 0px;
+	}
+}
+
+.open
+{
+	&.options
+	{
+		#options
+		{
+			visibility: visible;
+			.transform(translate3d(0%, 0, 0) rotateY(0deg));
+		}
+
+		#about
+		{
+			.translateY(100%);
+		}
+	}
+
+	&.about
+	{
+		#about
+		{
+			visibility: visible;
+			.transform(translate3d(0%, 0, 0) rotateY(0deg));
+		}
+
+		#options{
+			.translateY(-100%);
+		}
+	}
+}

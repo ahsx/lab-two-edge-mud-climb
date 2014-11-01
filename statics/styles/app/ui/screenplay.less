@@ -1,0 +1,150 @@
+#screenplay
+{
+	.legend
+	{
+		position: absolute;
+		bottom: 30px;
+		left: 130px;
+		z-index: 99;
+
+		h1
+		{
+
+			background: @col_black;
+			padding: 10px 30px;
+			font-size: 2.5em;
+			color: @col_white;
+			text-transform: uppercase;
+			font-weight: normal;
+		}
+	}
+
+	.container
+	{
+		position: absolute;
+		top: 0;
+		left: 70px;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+
+		width: ~"calc(80% - 70px)";
+		height: 80%;
+		z-index: 1;
+		
+		.border
+		{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+
+			canvas
+			{
+				background: red;
+			}
+
+			.cut
+			{
+				@thickness: 2px;
+				@length: 30px;
+				@offset: 10px;
+
+				background: @col_black;
+				.opacity(.1);
+				position: absolute;
+				display: block;
+
+				&:before, &:after
+				{
+					content: '';
+					position: absolute;
+					background: @col_black;
+				}
+
+				&.topleft
+				{
+					// horizontal
+					&:before
+					{
+						width: @length;
+						height: @thickness;
+						left: -(@length + @offset);
+					}
+
+					// vertical
+					&:after
+					{
+						width: @thickness;
+						height: @length;
+						top: -(@length + @offset);
+					}
+				}
+
+				&.topright
+				{
+					left: 100%;
+					// horizontal
+					&:before
+					{
+						width: @length;
+						height: @thickness;
+						left: @offset;	
+					}
+
+					// vertical
+					&:after
+					{
+						width: @thickness;
+						height: @length;
+						top: -(@length + @offset);
+					}
+				}
+
+				&.bottomright
+				{
+					left: 100%;
+					top: 100%;
+
+					// horizontal
+					&:before
+					{
+						width: @length;
+						height: @thickness;
+						left: @offset;	
+					}
+
+					// vertical
+					&:after
+					{
+						width: @thickness;
+						height: @length;
+						top: @offset;
+					}
+				}
+
+				&.bottomleft
+				{
+					top: 100%;
+
+					// horizontal
+					&:before
+					{
+						width: @length;
+						height: @thickness;
+						left: -(@length + @offset);	
+					}
+
+					// vertical
+					&:after
+					{
+						width: @thickness;
+						height: @length;
+						top: @offset;
+					}
+
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,93 @@
+/**
+ * 	Some helpers and utilities
+ *	
+ *	@author Alexandre Masy
+ */
+
+//===========/----------------------------------------------
+//  [_DIS]  /  Display
+//=========/------------------------------------------------
+.hidden
+{
+	display: none;
+}
+.clear
+{
+	clear: both;
+	display: block;
+}
+
+//===========/----------------------------------------------
+//  [_STY]  /  Style
+//=========/------------------------------------------------
+.underline
+{
+	text-decoration: underline;
+}
+.bold
+{
+	font-weight: bold;
+}
+
+
+//===========/----------------------------------------------
+//  [_ALI]  /  Alignements
+//=========/------------------------------------------------
+.center
+{
+	text-align: center;
+}
+
+/**
+ *	Vertical align
+ *	@exemple
+ 		<div class="vcenter"><!--
+			--><span class="item empty"></span><!--
+			--><span class="item">Centered</span><!--
+		--></div>
+ */
+.vcenter
+{
+	.item
+	{
+		vertical-align: middle;
+		display: inline-block;
+		&.empty
+		{
+			width:0;
+			height:100%;
+		}
+	}
+}
+
+//===========/----------------------------------------------
+//  [_FOR]  /  Forms
+//=========/------------------------------------------------
+// Set placeholder color
+.placeholder( @color: #ffffff )
+{
+	&::-webkit-input-placeholder { /* WebKit browsers */
+	    color: @color;
+	}
+	&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color: @color;
+	}
+	&::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color: @color;
+	}
+	&:-ms-input-placeholder { /* Internet Explorer 10+ */
+	    color: @color;
+	}
+}
+
+//===========/----------------------------------------------
+//  [_OTH]  /  Others
+//=========/------------------------------------------------
+.no-select
+{
+	user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+}

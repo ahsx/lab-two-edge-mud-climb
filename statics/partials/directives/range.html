@@ -1,0 +1,23 @@
+<fieldset>
+  <div class="row title-value">
+    <legend>{{title}}</legend>
+    <output name="output">{{value | number:precision}}</output>
+  </div>
+
+  <div class="row field range">
+    <a class="minus" href="#" title="-" ng-click="minus()">-</a>
+    <div class="container">
+      <input 
+        type="range" 
+        name="quantity" 
+        value="{{value}}" 
+        min="{{min}}" 
+        max="{{max}}" 
+        step="{{step}}"
+        placeholder="0" 
+        ng-model="value"
+      />  
+    </div>
+    <a class="plus" href="#" title="+" ng-click="plus()">+</a>
+  </div>
+</fieldset>

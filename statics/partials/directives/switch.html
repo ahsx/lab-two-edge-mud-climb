@@ -1,0 +1,16 @@
+<fieldset>
+  <div class="row title">
+    <legend>{{title}}</legend>
+  </div>
+
+  <div class="row field switch">
+    <input 
+    	type="checkbox" 
+    	ng-model="value"
+      ng-true-value="{{labelon}}"
+      ng-false-value="{{labeloff}}"
+    	ng-checked="isOn"
+    >
+    <label for="switch1" data-on="{{labelon}}" data-off="{{labeloff}}"></label>
+  </div>
+</fieldset>

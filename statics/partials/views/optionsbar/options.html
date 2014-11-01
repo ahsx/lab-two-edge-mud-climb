@@ -1,0 +1,54 @@
+<!-- Options -->
+<article id="options">
+	<form>
+	  
+	  <!-- global -->
+	  <section>
+		<header class="green">Global</header>
+
+		<!-- Quantity -->
+		<range id="special" min="10" max="100" value="50" title="Quantity"></range>
+
+		<range id="special" min="0" max="500" value="100" title="Bizoux"></range>
+
+		<!-- Theme -->
+		<dropdown title="Theme">
+		  <option value="">default</option>
+		  <option value="">default2</option>
+		  <option value="">default3</option>
+		  <option value="">default4</option>
+		  <option value="">default5</option>
+		</dropdown>
+
+		<!-- Random -->
+		<switch labelOn="oui" labelOff="non" on="true" title="random ?"></switch>
+
+	  </section>
+
+	  <section>
+		<header class="red">Stage</header>
+
+		<!-- width -->
+		<range id="stageWidth" min="10" max="100" value="50" title="Width (%)"></range>
+
+		<!-- height -->
+		<range id="stageHeight" min="10" max="100" value="50" title="Height (%)"></range>
+
+		<!-- max -->
+		<switch labelOn="oui" labelOff="non" on="true" title="Maximum available ?"></switch>
+
+	  </section>
+
+	  <section>
+		<header class="blue">Controls</header>
+
+		<fieldset>
+		  <div class="row controls">
+			<button class="reset field" type="button">reset</button>
+			<button class="save field" type="button">save</button>
+		  </div>
+		</fieldset>
+	  </section>
+
+	</form>
+</article>

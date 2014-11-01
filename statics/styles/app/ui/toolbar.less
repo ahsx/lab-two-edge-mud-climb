@@ -1,0 +1,177 @@
+ /**
+ *	Toolbar styles
+ **/
+
+#toolbar
+{
+	background: @col_toolbar_background;
+	width: 70px;
+	height: 100%;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	z-index: 99;
+
+	.box-shadow(0px 0px 5px 0px rgba(0,0,0,0.5));
+
+	a
+	{
+		display: block;
+		padding: 20px 0px;
+		width: 100%;
+		text-align: center;
+		color: @col_white;
+		text-decoration: none;
+
+		.opacity(.5);
+		.transition(1s);
+
+		&.active, &:hover
+		{
+			.opacity(1);
+		}
+	}
+
+	.logo
+	{
+		background: @col_toolbar_active;
+		border-bottom: 3px solid @col_toolbar_active;
+		padding: 20px 0px;
+
+		.icon
+		{
+			width: 32px;
+		}
+
+	}	
+
+	.icon-font
+	{
+		display: inline-block;
+		cursor: pointer;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		color: @col_white;
+
+		&:before, &:after
+		{
+			box-sizing: border-box;
+		}
+
+		&:before
+		{
+			speak: none;
+			font-size: 25px;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			display: block;
+			-webkit-font-smoothing: antialiased;
+			border-left: 4px solid @col_toolbar_background;
+			text-indent: -5px;
+			.transition(.3);
+		}
+
+		&:after
+		{
+			top:50%;
+			left: 50%;
+			z-index: -1;
+			background: @col_toolbar_active;
+			.transition(.3);
+			// .transform(translateY(-100%));
+			.opacity(0);
+
+			border: 1px solid @col_toolbar_active;
+			border-radius:230px;
+
+			pointer-events: none;
+			position: absolute;
+			width: 10%;
+			height: 10%;
+			content: '';
+			.box-sizing(content-box);
+		}
+
+		div.container
+		{
+			position: absolute;
+			z-index: 0;
+			left: 100%;
+			top: 15px;
+			pointer-events: none;
+			overflow: hidden;
+
+			div
+			{
+				padding: 10px 15px;
+				background: @col_toolbar_background;
+				.box-shadow(0px 0px 5px 0px rgba(0,0,0,0.5));
+				font-size: 1.2em;
+				text-transform: uppercase;
+				color: @col_form_input_background;
+				
+				.translateX(-100%);
+				.transition(.3s);
+			}
+		}
+
+		&:hover
+		{
+			color: @col_white;
+
+			&:before
+			{
+				border-left: 4px solid @col_toolbar_active;
+			}
+
+			&:after
+			{
+				// .transform(translateY(0px));
+				border: 5px solid @col_toolbar_active;
+				.opacity(1);
+
+				top: 0px;
+				left: 0px;
+				width: 60px;
+				height: 50px;
+				border-radius: 0px;
+			}
+
+			div.container > div
+			{
+				.translateX(0%);
+			}
+		}
+
+		&.active
+		{
+			&:before
+			{
+				border-left: 4px solid @col_white;
+			}
+		}
+	}
+
+	ul
+	{
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.github
+	{
+		position: absolute;
+		bottom: 30px;
+		color: @col_white;
+
+		.icon
+		{
+			width: auto;
+			height: 25px;
+		}
+	}
+}
