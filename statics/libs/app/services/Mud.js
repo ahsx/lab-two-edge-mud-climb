@@ -234,7 +234,6 @@
 					.lineTo( this.width, 0 )
 					.lineTo( this.width, this.height )
 					.lineTo( 0, this.height )
-					.lineTo( 0, 200 )
 					.endFill()
 					;
 		

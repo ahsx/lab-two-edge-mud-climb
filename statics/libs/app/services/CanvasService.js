@@ -33,7 +33,7 @@ angular
 		/**
 		 *	Define the number of points
 		 *
-		 *	@param value Number
+		 *	@param value uint
 		 **/
 		this.setNPoints = function( value )
 		{
@@ -47,6 +47,21 @@ angular
 			{
 				this.list[n].setNPoints( value )
 			}	
+		}
+
+		/**
+		 *	Define the number of layer
+		 *
+		 *	@param value uint
+		 **/
+		this.setNLayers = function( value )
+		{
+			value = value|0;
+			if ( value == this.nlayers || value == 0 )
+				return;
+
+			this.nlayers = value;
+
 		}
 
 		/**
@@ -67,15 +82,18 @@ angular
 
 			// this.colors = ['#FDF2E0', '#F0C7B3', '#DA9681', '#765047', '#423837'];
 			// this.colors = ['#423837', '#765047', '#DA9681', '#F0C7B3', '#FDF2E0'];
-			
-			this.colors = getColors('#F0C7B3', 3);
+				
+			var c = new klr( Utils.range(0, 255),Utils.range(0, 255),Utils.range(0, 255) );
+			c = '#'+c.format('string');
+
+			this.maxLayers = 30;
+			this.colors = getColors( c, this.maxLayers);
 			this.list = [];
 			this.nColors = this.colors.length;
 
 			var k = klr.fromHex(this.colors[this.nColors-1]);
-			k.setBrightness(250);
-			k.setSaturation(10);
-			this.bgColor = '#'+k.format('string');
+			k = k.toMonochrome();
+			this.bgColor = '#'+k.getList()[1].format('string');
 
 			this.container = container;
 			this.background = null;
@@ -182,7 +200,7 @@ angular
 			var n = this.nColors;
 			var s;
 			var m;
-			var avgh = (this.pixelHeight*.3*2) / (this.nColors);
+			var avgh = (this.pixelHeight*.1*7) / (this.nColors);
 			var h = 0;
 			var y = 0;
 			while( n-- )
@@ -219,13 +237,12 @@ angular
 			var ret = [];
 			var n = l.length-1;
 			var i = -1;
-			while( i++ < n )
+			while( n-- )
 			{
-				k = l[i];
+				k = l[n];
 				ret.push( '#'+k.format('string') );
 			}
 
-			console.log(ret);
 			return ret;
 		}
 
