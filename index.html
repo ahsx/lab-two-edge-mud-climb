@@ -102,41 +102,19 @@
             <range 
               min="1" 
               max="30" 
-              value="4" 
+              value="30" 
               title="Number of layers" 
-              model="options.bizoux">
+              model="options.nLayers">
             </range>
 
             <!-- npoints -->
             <range 
               min="2" 
               max="30" 
-              value="5" 
+              value="30" 
               title="Number of points" 
-              model="options.npoints">
+              model="options.nPoints">
             </range>
-
-            <!-- Theme -->
-            <dropdown 
-              title="Theme" 
-              model="options.theme"
-            >
-              <option value="a" selected="selected">default</option>
-              <option value="b">default2</option>
-              <option value="c">default3</option>
-              <option value="d">default4</option>
-              <option value="e">default5</option>
-            </dropdown>
-
-            <!-- Random -->
-            <switch 
-              labelOn="oui" 
-              labelOff="non" 
-              on="true" 
-              title="random ?"
-              model="options.random"
-            >
-            </switch>
 
           </section>
 
@@ -147,7 +125,7 @@
             <range 
               min="10" 
               max="100" 
-              value="50" 
+              value="100" 
               title="Width (%)"
               model="options.stageWidth"
             ></range>
@@ -157,7 +135,7 @@
               id="stageHeight" 
               min="10" 
               max="100" 
-              value="50" 
+              value="100" 
               title="Height (%)"
               model="options.stageHeight"
             ></range>

@@ -126,7 +126,8 @@
 	{
 		this.active = value == true;
 
-		this.compute();
+		if ( this.list && this.list.length > 0 )
+			this.compute();
 	}
 
 	/**
@@ -139,7 +140,7 @@
 		var n = this.maxPoints;
 		var i = -1;
 		var avg = this.width / n;
-		var increase = Math.PI / this.maxPoints;
+		var increase = Math.PI / (this.maxPoints*.3*2);
 		var counter = 0;
 		var x, y = 0;
 
@@ -172,8 +173,6 @@
 	 **/
 	p.compute = function ()
 	{
-		console.log('compute');
-
 		var old = this.points;
 		this.points = [];
 		var n = this.list.length-1;
@@ -217,6 +216,13 @@
 					y:old[j].y
 				};
 			}
+			else
+			{
+				p = {
+					x:x,
+					y:y
+				}
+			}
 
 			TweenMax.to( p, 1, {x:x, y:y});
 			this.points.push( p );
@@ -234,15 +240,16 @@
 
 		// debug
 		var stroke = 1;
+		var n = this.nPoints;
+		var i = 0;
+		var p = this.points[i];
+
 		this.shape.graphics
 					.beginStroke( this.color )
 					.setStrokeStyle( stroke )
 					.beginFill( this.rgba )
-					.moveTo( stroke, this._height )
+					.moveTo( 0, p.y )
 
-		var n = this.nPoints;
-		var i = -1;
-		var p;
 
 		while( i++ < n )
 		{

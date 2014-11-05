@@ -26,7 +26,7 @@ angular
 			var n = this.maxLayers;
 			while( n-- )
 			{
-				this.list[n].setComposite( value )
+				this.layers[n].setComposite( value )
 			}
 		}
 
@@ -45,7 +45,7 @@ angular
 			var n = this.maxLayers;
 			while( n-- )
 			{
-				this.list[n].setNPoints( value )
+				this.layers[n].setNPoints( value )
 			}	
 		}
 
@@ -57,11 +57,31 @@ angular
 		this.setNLayers = function( value )
 		{
 			value = value|0;
-			if ( value == this.nlayers || value == 0 )
+			if ( value == this.nLayers || value == 0 )
 				return;
 
-			this.nlayers = value;
+			this.nLayers = value;
 
+			// muds
+			var n = this.maxLayers;
+			var avg = this.maxLayers/this.nLayers | 0;
+			var avgh = (this.pixelHeight*.1*8.5) / (this.maxLayers);
+			var m, s, a, h = 0;
+			var i = 0, y = 0;
+			while( n-- )
+			{
+				m = this.layers[n];
+				s = m.getDisplayObject();
+				a = n % avg == 0;
+				if ( a ) 
+					i++;
+
+				h += avgh;
+
+				m.setActive( a );
+				y = a ? this.pixelHeight - h + Utils.range(-10, 20) : this.pixelHeight - i*10;
+				TweenMax.to( s, 1, {y:y});
+			}
 		}
 
 		/**
@@ -82,8 +102,9 @@ angular
 			c = '#'+c.format('string');
 
 			this.maxLayers = 30;
+			this.nLayers = 6;
 			this.colors = getColors( c, this.maxLayers+2 );
-			this.list = [];
+			this.layers = [];
 
 			var k = klr.fromHex(this.colors[this.maxLayers-1]);
 			k = k.toMonochrome();
@@ -122,9 +143,13 @@ angular
 			{
 				m = new Mud( this.colors[n], 6, 100, .25);
 				m.setUtils( Utils );
+
+				if ( n > this.nLayers )
+					m.setActive( false );
+
 				this.stage.addChild( m.getDisplayObject() );
 			
-				this.list.push( m );
+				this.layers.push( m );
 			}
 		}
 
@@ -137,7 +162,8 @@ angular
 		{
 			this.setSize( options.stageWidth, options.stageHeight );
 			this.setComposite( options.composite );
-			this.setNPoints( options.npoints );
+			this.setNPoints( options.nPoints );
+			this.setNLayers( options.nLayers );
 		}
 
 		/**
@@ -149,7 +175,7 @@ angular
 			var n = this.maxLayers;
 			while( n-- )
 			{
-				this.list[n].draw();
+				this.layers[n].draw();
 			}
 
 		}
@@ -197,12 +223,12 @@ angular
 			var n = this.maxLayers;
 			var s;
 			var m;
-			var avgh = (this.pixelHeight*.1*7) / (this.maxLayers);
+			var avgh = (this.pixelHeight*.1*8.5) / (this.maxLayers);
 			var h = 0;
 			var y = 0;
 			while( n-- )
 			{
-				m = this.list[n];
+				m = this.layers[n];
 				s = m.getDisplayObject();
 				h += avgh;
 
