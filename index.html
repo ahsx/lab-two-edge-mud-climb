@@ -75,24 +75,45 @@
           <section>
             <header class="green">Global</header>
 
-            <!-- Quantity -->
+            <!-- composite -->
+            <dropdown 
+              title="Composite" 
+              model="options.composite"
+            >
+              <option value="normal">normal</option>
+              <option value="multiply">multiply</option>
+              <option value="screen">screen</option>
+              <option value="overlay">overlay</option>
+              <option value="darken">darken</option>
+              <option value="lighten">lighten</option>
+              <option value="color-dodge">color-dodge</option>
+              <option value="color-burn">color-burn</option>
+              <option value="hard-light">hard-light</option>
+              <option value="soft-light">soft-light</option>
+              <option value="difference">difference</option>
+              <option value="exclusion">exclusion</option>
+              <option value="hue">hue</option>
+              <option value="saturation">saturation</option>
+              <option value="color">color</option>
+              <option value="luminosity">luminosity</option>
+            </dropdown>
+
+            <!-- nmuds -->
             <range 
-              id="special" 
-              min="10" 
-              max="100" 
-              value="50" 
-              title="Quantity" 
-              model="options.quantity">
+              min="1" 
+              max="30" 
+              value="4" 
+              title="Number of layers" 
+              model="options.bizoux">
             </range>
 
-            <!-- Bizoux -->
+            <!-- npoints -->
             <range 
-              id="special" 
-              min="0" 
-              max="500" 
-              value="100" 
-              title="Bizoux" 
-              model="options.bizoux">
+              min="2" 
+              max="30" 
+              value="5" 
+              title="Number of points" 
+              model="options.npoints">
             </range>
 
             <!-- Theme -->

@@ -99,6 +99,7 @@ var libs = [
 							,'statics/libs/vendors/jQuery/dist/jquery.min.js'
 							,'statics/libs/vendors/easeljs/lib/easeljs-NEXT.min.js'
 							,'statics/libs/vendors/greensock/src/minified/TweenMax.min.js'
+							,'statics/libs/vendors/klr/klr.min.js'
 		]
 	}
 ]
