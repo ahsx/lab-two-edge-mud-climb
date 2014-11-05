@@ -17,6 +17,7 @@
 		this.frequency = frequency;
 		this.maxPoints = 30;
 		this.needDraw = false;
+		this.active = true;
 
 		var k = klr.fromHex( this.color );
 		this.rgba = "rgba({red},{green},{blue}, .4)"
@@ -117,6 +118,18 @@
 	}
 
 	/**
+	 *	Activate or deactivate the mud
+	 *	
+	 *	@param value Boolean
+	 **/
+	p.setActive = function( value )
+	{
+		this.active = value == true;
+
+		this.compute();
+	}
+
+	/**
 	 *	Compute all the available points
 	 */
 	p.reset = function()
@@ -169,7 +182,7 @@
 		var i = -a;
 		var j = -1;
 		var p;
-		var x, y;
+		var x = 0, y = 0;
 		var index;
 
 		while ( i < n )
@@ -177,22 +190,32 @@
 			i += a;
 			i = Math.min( i, n );
 			j++;
-		
-			p = this.list[i];
-			x = p.x;
-			y = p.y;
-			p = {x:x, y:y};
 			
-			// 
-			if ( old && old.length > j )
+			if ( this.active )
 			{
-				p.x = old[j].x;
-				p.y = old[j].y;
+				p = this.list[i];
+				x = p.x;
+				y = p.y;
+				p = {x:x, y:y};
+				
+				// 
+				if ( old && old.length > j )
+				{
+					p.x = old[j].x;
+					p.y = old[j].y;
+				}
+				else
+				{
+					p.x = this.width;
+					p.y = 0;
+				}
 			}
-			else
+			else if ( old && old.length > j )
 			{
-				p.x = this.width;
-				p.y = 0;
+				p = {
+					x:old[j].x,
+					y:old[j].y
+				};
 			}
 
 			TweenMax.to( p, 1, {x:x, y:y});

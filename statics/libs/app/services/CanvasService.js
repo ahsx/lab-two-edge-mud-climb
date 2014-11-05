@@ -23,7 +23,7 @@ angular
 				return;
 
 			this.composite = value;
-			var n = this.nColors;
+			var n = this.maxLayers;
 			while( n-- )
 			{
 				this.list[n].setComposite( value )
@@ -42,7 +42,7 @@ angular
 				return;
 
 			this.npoints = value;
-			var n = this.nColors;
+			var n = this.maxLayers;
 			while( n-- )
 			{
 				this.list[n].setNPoints( value )
@@ -77,21 +77,15 @@ angular
 			this.context = canvas[0].getContext('2d');
 			this.stage = new createjs.Stage( canvas[0] );
 			createjs.Ticker.addEventListener("tick", onTickHandler.bind(this));
-			// createjs.Ticker.useRAF = true;
-			// createjs.Ticker.setFPS(60);
-
-			// this.colors = ['#FDF2E0', '#F0C7B3', '#DA9681', '#765047', '#423837'];
-			// this.colors = ['#423837', '#765047', '#DA9681', '#F0C7B3', '#FDF2E0'];
 				
 			var c = new klr( Utils.range(0, 255),Utils.range(0, 255),Utils.range(0, 255) );
 			c = '#'+c.format('string');
 
 			this.maxLayers = 30;
-			this.colors = getColors( c, this.maxLayers);
+			this.colors = getColors( c, this.maxLayers+2 );
 			this.list = [];
-			this.nColors = this.colors.length;
 
-			var k = klr.fromHex(this.colors[this.nColors-1]);
+			var k = klr.fromHex(this.colors[this.maxLayers-1]);
 			k = k.toMonochrome();
 			this.bgColor = '#'+k.getList()[1].format('string');
 
@@ -121,7 +115,7 @@ angular
 			this.stage.addChild( this.background = new createjs.Shape() );
 
 			// muds
-			var n = this.nColors;
+			var n = this.maxLayers;
 			var m;
 			var h;
 			while( n-- )
@@ -152,7 +146,7 @@ angular
 		this.draw = function()
 		{
 			// muds
-			var n = this.nColors;
+			var n = this.maxLayers;
 			while( n-- )
 			{
 				this.list[n].draw();
@@ -171,15 +165,18 @@ angular
 			if ( width == undefined || height == undefined )
 				return;
 
-			if ( width == this.width && height == this.height )
-				return;
-
 			this.width = width;
 			this.height = height;
 
 			var offset = 70;
-			this.pixelWidth = this.windowWidth * (width*.01) - offset;
-			this.pixelHeight = this.windowHeight * (height*.01);
+			var pw = this.windowWidth * (width*.01) - offset;
+			var ph = this.windowHeight * (height*.01);
+			
+			if ( pw == this.pixelWidth && ph == this.pixelHeight )
+				return;
+
+			this.pixelWidth = pw;
+			this.pixelHeight = ph;
 
 			console.group('CanvasService::SetSize');
 			console.log('% 	- %s 	x 	%s', width, height);
@@ -197,10 +194,10 @@ angular
 			});
 
 			// muds
-			var n = this.nColors;
+			var n = this.maxLayers;
 			var s;
 			var m;
-			var avgh = (this.pixelHeight*.1*7) / (this.nColors);
+			var avgh = (this.pixelHeight*.1*7) / (this.maxLayers);
 			var h = 0;
 			var y = 0;
 			while( n-- )
